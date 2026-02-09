@@ -23,10 +23,8 @@ var (
 	add           = flag.Bool("a", false, "Add the following arg to the clipboard history.")
 	copyInput     = flag.Bool("c", false, "Copy the input to your systems clipboard.")
 	paste         = flag.Bool("p", false, "Prints the current clipboard content.")
-	listen        = flag.Bool("listen", false, "Start background process for monitoring clipboard activity on wayland/x11/macOS.")
+	listen        = flag.Bool("listen", false, "Start background process for monitoring clipboard activity.")
 	listenShell   = flag.Bool("listen-shell", false, "Starts a clipboard monitor process in the current shell.")
-	listenDarwin  = flag.Bool("listen-darwin", false, "Starts a clipboard monitor process in the current shell for Darwin systems.")
-	listenX11     = flag.Bool("listen-x11", false, "Starts a clipboard monitor process in the current shell for X11 systems.")
 	kill          = flag.Bool("kill", false, "Kill any existing background processes.")
 	clearUnpinned = flag.Bool("clear", false, "Remove all contents from the clipboard history except for pinned items.")
 	clearAll      = flag.Bool("clear-all", false, "Remove all contents the clipboard history including pinned items.")
@@ -82,12 +80,6 @@ func Main() int {
 
 	case *listenShell:
 		display.DisplayServer.RunListener()
-
-	case *listenDarwin:
-		handlers.RunDarwinListener()
-
-	case *listenX11:
-		handlers.RunX11Listener()
 
 	case *kill:
 		handleKill()

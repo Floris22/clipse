@@ -83,11 +83,9 @@ func KillExistingFG() {
 			utils.LogWARN(fmt.Sprintf("failed to get pid's command | pid: %s | err msg: %s | output: %s", pid, err, psOutput))
 			continue
 		}
-		pidCmd := strings.Split(string(psOutput), "\n")[1] // skip headers (macOS's ps doesn't support --no-headers)
+		pidCmd := strings.Split(string(psOutput), "\n")[1] // skip headers
 		if strings.Contains(pidCmd, listenShellCmd) ||
-			strings.Contains(pidCmd, wlStoreCmd) ||
-			strings.Contains(pidCmd, darwinListenCmd) ||
-			strings.Contains(pidCmd, x11ListenCmd) {
+			strings.Contains(pidCmd, wlStoreCmd) {
 			continue
 		}
 

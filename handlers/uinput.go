@@ -1,5 +1,4 @@
 // handlers/uinput.go
-//go:build wayland
 
 /* uint lib used to handle automated paste following copy action.
 Lib: https://github.com/bendahl/uinput/
